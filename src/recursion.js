@@ -142,8 +142,6 @@ var exponent = function(base, exp) {
 // powerOfTwo(10); // false
 var powerOfTwo = function(n) {
 
-  // handle base case
-    // if n is 1
     if (n === 1) {
       return true;
     } else if (n < 1) {
@@ -156,6 +154,15 @@ var powerOfTwo = function(n) {
 
 // 9. Write a function that reverses a string.
 var reverse = function(string) {
+
+  accumulator = [];
+
+   if (string.length === 0) {
+     return accumulator.join('');
+   }
+
+     accumulator = accumulator.concat(string.split('').pop());
+     return reverse(string.split('').slice(0, string.length - 1).join(''));
 };
 
 // 10. Write a function that determines if a string is a palindrome.
