@@ -82,20 +82,28 @@ var range = function(x, y) {
 
   var accumulator = [];
 
-  accumulator.push(x + 1);
+  if (Math.abs(y - x) <= 1) {
+    return [];
+  }
 
-      if (y - x <= 1) {
-        return [];
-      }
+  if (x === y - 2) {
+    return y - 1;
+  }
 
-      if (x === y - 2) {
-        return y - 1;
-      }
+  if (y === x - 2) {
+    return x - 1;
+  }
 
-      accumulator = accumulator.concat(range(x + 1, y));
 
-      return accumulator
+  if (x < y) {
+    accumulator.push(x + 1);
+    return accumulator.concat(range(x + 1, y));
+  }
 
+  if (x > y) {
+    accumulator.push(x - 1);
+    return accumulator.concat(range(x - 1, y));
+  }
 };
 
 // 7. Compute the exponent of a number.
