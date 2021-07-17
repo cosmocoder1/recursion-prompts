@@ -112,8 +112,6 @@ var range = function(x, y) {
 // exponent(4,3); // 64
 // https://www.khanacademy.org/computing/computer-science/algorithms/recursive-algorithms/a/computing-powers-of-a-number
 var exponent = function(base, exp) {
-  // handle base case
-    // when exponent has reached zero, return base
 
     var accumulator = base;
 
@@ -143,6 +141,17 @@ var exponent = function(base, exp) {
 // powerOfTwo(16); // true
 // powerOfTwo(10); // false
 var powerOfTwo = function(n) {
+
+  // handle base case
+    // if n is 1
+    if (n === 1) {
+      return true;
+    } else if (n < 1) {
+      return false;
+    }
+
+    return powerOfTwo(n / 2);
+
 };
 
 // 9. Write a function that reverses a string.
