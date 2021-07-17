@@ -112,6 +112,30 @@ var range = function(x, y) {
 // exponent(4,3); // 64
 // https://www.khanacademy.org/computing/computer-science/algorithms/recursive-algorithms/a/computing-powers-of-a-number
 var exponent = function(base, exp) {
+  // handle base case
+    // when exponent has reached zero, return base
+
+    var accumulator = base;
+
+    if (exp === 0) {
+      return 1;
+    }
+
+    if (exp === 1 || exp === -1) {
+      return base;
+    }
+
+    if (exp < 0) {
+      posExp = exp.toString().split('');
+      posExp.shift('');
+      newExp = parseInt(posExp.join(''))
+      accumulator *= exponent(base, newExp - 1);
+      return 1 / accumulator;
+    }
+
+    if (exp > 0) {
+      return base * exponent(base, exp - 1);
+    }
 };
 
 // 8. Determine if a number is a power of two.
