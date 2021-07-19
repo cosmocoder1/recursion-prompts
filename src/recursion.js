@@ -206,6 +206,9 @@ var modulo = function(x, y) {
   }
 
   if (x - y === 0) {
+    if (x < 0 && y < 0) {
+      return -0;
+    }
     return 0;
   }
 
@@ -215,9 +218,16 @@ var modulo = function(x, y) {
 
   if (x < y) {
     if (x < 0 && y < 0) {
-      return parseInt(x.toString().split('').unshift('-'));
+      return modulo(x - y, y)
+    } else if (x < 0 && y >= 0) {
+
+      negativeY = y.toString().split('');
+      negativeY.unshift('-');
+      y = parseInt(negativeY.join(''));
+
+      return modulo(x - y, y)
     }
-    return x;
+      return x;
   }
 
   return modulo(x - y, y)
