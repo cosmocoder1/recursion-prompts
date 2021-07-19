@@ -183,8 +183,46 @@ var palindrome = function(string) {
 // modulo(17,5) // 2
 // modulo(22,6) // 4
 var modulo = function(x, y) {
-};
 
+  var absValue = function(n) {
+    if (n.toString().split('').includes('-')) {
+      tempNum = n.toString().split('');
+      tempNum.shift();
+      n = tempNum.join('');
+    }
+    return parseInt(n);
+  }
+
+  if (absValue(x) < absValue(y)) {
+    return x;
+  }
+
+  if (x === 0 && y === 0) {
+    return NaN;
+  }
+
+  if (x === 0) {
+    return 0;
+  }
+
+  if (x - y === 0) {
+    return 0;
+  }
+
+  if (x === y) {
+    return 1;
+  }
+
+  if (x < y) {
+    if (x < 0 && y < 0) {
+      return parseInt(x.toString().split('').unshift('-'));
+    }
+    return x;
+  }
+
+  return modulo(x - y, y)
+
+};
 // 12. Write a function that multiplies two numbers without using the * operator or
 // Math methods.
 var multiply = function(x, y) {
