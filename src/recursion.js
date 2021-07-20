@@ -419,15 +419,13 @@ var countValuesInObj = function(obj, value) {
     for (key in obj) {
       var current = obj[key];
       if (Object(current) !== current) {
-        if (value === current) {
-          count += 1;
+          count += countValuesInObj(current, value)
         } else {
-        countValuesInObj(current, value);
+        count += 1;
       }
     return count;
     }
   }
-};
 
 // 24. Find all keys in an object (and nested objects) by a provided name and rename
 // them to a provided new name while preserving the value stored at that key.
