@@ -427,9 +427,16 @@ var countValuesInObj = function(obj, value) {
 // them to a provided new name while preserving the value stored at that key.
 var replaceKeysInObj = function(obj, oldKey, newKey) {
 
+  for (key in obj) {
+    if (Object(key) === key) {
+      replaceKeysInObj(key, oldKey, newKey);
+    } else if (key === oldKey) {
+      oldKey = newKey;
+    }
+    }
+    return obj;
+  };
 
-
-};
 
 // 25. Get the first n Fibonacci numbers. In the Fibonacci sequence, each subsequent
 // number is the sum of the previous two.
