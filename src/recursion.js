@@ -237,10 +237,39 @@ var modulo = function(x, y) {
 // Math methods.
 var multiply = function(x, y) {
 
-    if (y <= 1) {
-      return x;
+  var positive = function (num) {
+    var splitNum = num.toString().split('');
+    if (splitNum.includes('-')) {
+    splitNum.shift();
+    return parseInt(splitNum.join(''));
     }
-    return x + multiply(x, y - 1);
+  }
+
+  var negative = function (num) {
+    var splitNum = num.toString().split('');
+    if (!splitNum.includes('-')) {
+    splitNum.unshift('-');
+    return parseInt(splitNum.join(''));
+    }
+  }
+
+  if (x === 0 || y === 0) {
+    return 0;
+  }
+
+  if (y <= 1 && y >= -1) {
+    return x;
+  }
+
+  if (x < 0 && y < 0) {
+    return positive(x) + multiply(positive(x), positive(y) - 1);
+  }
+
+  if (x > 0 && y < 0) {
+    return negative(x) + multiply(negative(x), positive(y) - 1);
+  }
+
+  return x + multiply(x, y - 1);
 
 };
 
