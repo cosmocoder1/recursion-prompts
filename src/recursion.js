@@ -427,20 +427,16 @@ var countValuesInObj = function(obj, value) {
 // them to a provided new name while preserving the value stored at that key.
 var replaceKeysInObj = function(obj, oldKey, newKey) {
 
-  var resultObj = {};
-
   for (key in obj) {
     var current = obj[key];
     if (Object(current) === current) {
-      if (key === oldKey) {
-        resultObj[newKey] = current;
         replaceKeysInObj(current, oldKey, newKey);
-      }
-    } else {
-        replaceKeysInObj(key, oldKey, newKey);
+    } else if (key === oldKey) {
+        obj[newKey] = obj[oldKey];
+        delete obj[oldKey];
       }
     }
-  return resultObj;
+  return obj;
 };
 
 
