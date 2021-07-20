@@ -350,10 +350,6 @@ var compareStr = function(str1, str2) {
       return false;
     }
 
-  if (str1.length !== str2.length) {
-      return false;
-    }
-
   if (str1.length >= 1 && str2.length >= 1) {
     if (str1[0] === str2[0]) {
       return compareStr(str1.substr(1), str2.substr(1));
