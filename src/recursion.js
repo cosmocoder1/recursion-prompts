@@ -406,7 +406,7 @@ var buildList = function (value, length) {
 
   result.push(value);
 
-  return result.concat(buildList(value, length - 1))
+  return result.concat(buildList(value, length - 1));
 
 }
 
@@ -415,8 +415,27 @@ var buildList = function (value, length) {
 // For multiples of five, output 'Buzz' instead of the number.
 // For numbers which are multiples of both three and five, output “FizzBuzz” instead of the number.
 // fizzBuzz(5) // ['1','2','Fizz','4','Buzz']
-var fizzBuzz = function(n) {
-};
+var fizzBuzz = function (n) {
+
+  var result = [];
+
+  if (n === 0) {
+    return [];
+  }
+
+  if (n % 3 === 0 && n % 5 === 0) {
+    result.push("FizzBuzz");
+  } else if (n % 3 === 0) {
+    result.push("Fizz");
+  } else if (n % 5 === 0) {
+    result.push("Buzz");
+  } else {
+    result.push(n);
+  }
+
+  return result.concat(fizzBuzz(n - 1));
+
+}
 
 // 20. Count the occurrence of a value in a list.
 // countOccurrence([2,7,4,4,1,4], 4) // 3
